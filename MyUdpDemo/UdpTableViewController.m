@@ -154,9 +154,12 @@ static float DEVICE_WIDTH = 0;
     [self.msgArray addObject:msg];
     [self.tableView reloadData];
     
-    //这里tableview不滑动，有待解决
+    //这里tableview自动上移
     if (self.tableView.contentSize.height > self.tableView.bounds.size.height) {
-//        [self.tableView scrollToRowAtIndexPath:[[NSIndexPath alloc] initWithIndex:self.msgArray.count-1] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+        NSInteger index  = self.msgArray.count-1;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     }
 }
 
